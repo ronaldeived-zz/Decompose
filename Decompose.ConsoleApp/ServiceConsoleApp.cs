@@ -5,22 +5,24 @@ namespace Decompose.ConsoleApp
 {
     public class ServiceConsoleApp
     {
+        private VerifyNumberService _verifyNumber;
+        public ServiceConsoleApp(VerifyNumberService verifyNumber)
+        {
+            _verifyNumber = verifyNumber;
+        }
+
         public void ServiceConsole()
         {
-            var decompose = new VerifyNumber();
-            int number;
-            string dividers = String.Empty;
-            string primes = String.Empty;
-            string response;
+            var response = string.Empty;
             do
             {
                 Console.WriteLine("Digite um número para verificar divisores e primos: ");
-                number = int.Parse(Console.ReadLine());
+                var number = int.Parse(Console.ReadLine());
 
-                var getResult = decompose.Decompose(number);
+                var getResult = _verifyNumber.Decompose(number);
 
-                dividers = String.Empty;
-                primes = String.Empty;
+                var dividers = string.Empty;
+                var primes = string.Empty;
 
                 foreach (var item in getResult.Dividers)
                     dividers += string.Concat(item.ToString(), " ");
@@ -28,10 +30,9 @@ namespace Decompose.ConsoleApp
                 foreach (var item in getResult.Primes)
                     primes += string.Concat(item.ToString(), " ");
 
-
-                Console.WriteLine("Número de entrada: {0}", getResult.Value);
-                Console.WriteLine("Números divisores: {0}", dividers);
-                Console.WriteLine("Divisores Primos: {0}", primes);
+                Console.WriteLine($"Número de entrada: {getResult.Value}");
+                Console.WriteLine($"Números divisores: {dividers}");
+                Console.WriteLine($"Divisores Primos: {primes}");
 
                 Console.WriteLine("\nDeseja verificar outro número? Sim (s) ou Não (n): ");
                 response = Console.ReadLine();

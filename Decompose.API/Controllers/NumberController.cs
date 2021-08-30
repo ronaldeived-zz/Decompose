@@ -10,11 +10,11 @@ namespace Decompose.API.Controllers
         [HttpGet]
         public IActionResult Get(int number)
         {
-            var decompose = new VerifyNumber();
+            var decompose = new VerifyNumberService();
 
             var response = decompose.Decompose(number);
 
-            return response != null ? Ok(response) : null;
+            return response != null ? Ok(response) : NotFound();
         }
     }
 }

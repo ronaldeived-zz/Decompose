@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Decompose.Service
 {
-    public class VerifyNumber
+    public class VerifyNumberService
     {
         public Number Decompose(int number)
         {
